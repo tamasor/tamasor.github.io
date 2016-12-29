@@ -514,6 +514,26 @@ table {
   border-radius: 4px;
 }
 
+.tooltip-inner {
+    background-color: #ffffff;
+    color: #423c41;
+    opacity: 1;
+    padding: 20px;
+    max-width: 250px;
+    font-size: 10px;
+    line-height: 1.5;
+    border:1px solid #850c70;
+}
+.tooltip.in{
+	opacity: 1;
+}
+.tooltip.top .tooltip-arrow {
+  border-bottom-color: #850c70;
+}
+.tooltip i{
+	color: #850c70;
+	font-weight: bold;
+}
 @media screen and (max-width: 1200px) {
 	.tam-main-header-left h1{
 		font-size: 36px;
