@@ -529,6 +529,7 @@ table {
 }
 .tooltip.top .tooltip-arrow {
   border-bottom-color: #850c70;
+  display: none!important;
 }
 .tooltip i{
 	color: #850c70;
@@ -676,13 +677,10 @@ table {
 		margin-bottom: 20px;
 	}
 	.tam-section-3 .btn{
-		margin-bottom: 0px!important;
+		margin-bottom: 30px!important;
 	}
 	.tam-section-3{
 		text-align: center;
-	}
-	.tam-section-3 .btn{
-		margin-bottom: 0px!important;
 	}
 	.tam-section-5{
 		text-align: center;
