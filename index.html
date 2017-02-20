@@ -495,6 +495,7 @@ $('#closeResponse').click(function() {
     
         setTimeout(function(){
             var response = iframe.contentWindow.document.body.innerHTML;
+            $('.loading p').hide();
             $('.tam-response').show();
         }, 5000);
 
