@@ -497,6 +497,7 @@ $('#closeResponse').click(function() {
             var response = iframe.contentWindow.document.body.innerHTML;
             $('.loading p').hide();
             $('.tam-response').show();
+            $("form")[0].reset();
         }, 5000);
 
 
