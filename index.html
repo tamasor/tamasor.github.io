@@ -235,7 +235,7 @@
                 <div class="row">
                     <div class="col-md-12"><span style="color:#f8971d;font-weight:500;font-size:24px;margin-bottom:20px;display:inline-block;margin-top:30px;">Sizi Arayalım</span></div>
                 </div>
-                <form>
+                <form id="form1">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -244,10 +244,10 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input type="text" class="form-control" style="height:50px;border-radius:2px;" name="Telephone" placeholder="Telefon Numaranız">
+                                <input type="text" class="form-control telefon" style="height:50px;border-radius:2px;" name="Telephone" placeholder="Telefon Numaranız">
                             </div>
                         </div>
-                        <div class="col-md-3"><button style="padding-bottom: 13px;padding-top: 13px;" type="submit" class="btn btn-default btn-block tam-btn-ghost">BENİ ARAYIN</button></div>
+                        <div class="col-md-3"><button style="padding-bottom: 13px;padding-top: 13px;" type="submit" class="btn btn-default btn-block tam-btn-ghost form-submit-btn">BENİ ARAYIN</button></div>
                     </div>
                 </form>
             </div>
@@ -275,7 +275,7 @@
                     <div class="row">
                         <div class="col-md-12"><span style="color:#f8971d;font-weight:500;font-size:24px;margin-bottom:10px;display:inline-block;">Sizi Arayalım</span></div>
                     </div>
-                    <form>
+                    <form id="form2">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -284,10 +284,10 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" style="height:50px;border-radius:2px;" name="Telephone" placeholder="Telefon Numaranız">
+                                    <input type="text" class="form-control telefon" style="height:50px;border-radius:2px;" name="Telephone" placeholder="Telefon Numaranız">
                                 </div>
                             </div>
-                            <div class="col-md-3"><button style="color:#fff;border-color:#fff;padding-bottom: 13px;padding-top: 13px;" type="submit" class="btn btn-default btn-block tam-btn-ghost">BENİ ARAYIN</button></div>
+                            <div class="col-md-3"><button style="color:#fff;border-color:#fff;padding-bottom: 13px;padding-top: 13px;" type="submit" class="btn btn-default btn-block tam-btn-ghost form-submit-btn">BENİ ARAYIN</button></div>
                         </div>
                     </form>
                     </div>
@@ -314,7 +314,7 @@
     <script src="js/jquery.fancybox-media.js"></script>
     <script src="js/jquery.fancybox-buttons.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
-    
+    <script src="js/jquery.maskedinput.js"></script>
 
     <script src="js/site.js"></script>
     <script type="text/javascript">
@@ -386,6 +386,9 @@
             $(this).parent().addClass('active');
 
         });
+        $(function($){
+            $(".telefon").mask("0 (999) 999 99 99?*");
+        });
     });
     $(function() {
     $('.nav a').on('click', function(){ 
@@ -415,6 +418,54 @@
           $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
+<script>
 
+
+$(".form-submit-btn").click(function(){
+
+var active_form_id = $(this).closest("form").attr('id');
+crossDomainPost(active_form_id);
+
+});
+
+    function crossDomainPost(active_form_id) {
+      // Add the iframe with a unique name
+      var iframe = document.createElement("iframe");
+      var uniqueString = "tam-send-form";
+      document.body.appendChild(iframe);
+      iframe.style.display = "none";
+      iframe.contentWindow.name = uniqueString;
+
+      // construct a form with hidden inputs, targeting the iframe
+      var form = document.createElement("form");
+      form.target = uniqueString;
+      form.action = "http://www.tamfaktoring.com.tr/do/send_landing_siziarayalim_form";
+      form.method = "POST";
+
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "AdSoyad";
+      input.value = $("#"+active_form_id+" #NameSurname").val();
+      form.appendChild(input);
+
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "Telephone";
+      input.value = $("#"+active_form_id+" #Telephone").val();
+      form.appendChild(input);
+
+      document.body.appendChild(form);
+      form.submit();
+
+      
+    
+        setTimeout(function(){
+            var response = iframe.contentWindow.document.body.innerHTML;
+            alert(response);
+        }, 5000);
+
+
+    }
+</script>
   </body>
 </html>
