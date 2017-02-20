@@ -322,6 +322,12 @@
         padding: 20px;
         text-align: center;
       }
+      @media screen and (max-width: 768px) {
+        .tam-response{
+            left:30px;
+            right: 30px;
+          }
+        }
 
   </style>
   <div class="loading" style="display:none;position:fixed;width:100%;height:100%;background-color:rgba(27,5,23,0.65);top:0px;left:0px;z-index:99999;text-align:center;">
@@ -460,6 +466,7 @@ crossDomainPost(active_form_id);
 $('#closeResponse').click(function() {
     $('.tam-response').hide();
     $('.loading').hide();
+    $("#form1, #form2")[0].reset();
 });
 
     function crossDomainPost(active_form_id) {
@@ -497,7 +504,6 @@ $('#closeResponse').click(function() {
             var response = iframe.contentWindow.document.body.innerHTML;
             $('.loading p').hide();
             $('.tam-response').show();
-            $("form")[0].reset();
         }, 5000);
 
 
